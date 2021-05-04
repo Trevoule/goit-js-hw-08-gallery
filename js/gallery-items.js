@@ -64,57 +64,6 @@ const imagesRef= [
   },
 ];
 
-const refs = {
-  jsGalleryList: document.querySelector('.js-gallery'),
-  modalOpenBox: document.querySelector('div.lightbox'),
-  ModalImage: document.querySelector('img.lightbox__image'),
-  onModalCloseBtn: document.querySelector('.lightbox__button'),
-};
-
-const galleryItemsMarkUp = createGalleryCard(imagesRef);
-refs.jsGalleryList.insertAdjacentHTML('beforeend', galleryItemsMarkUp);
-
-
-function createGalleryCard(imagesRef) {
-  const galleryMarkUp = imagesRef.map(({ preview, original, description }) => {
-    return`<li class="gallery__item">
-  <a
-    class="gallery__link"
-    
-  >
-    <img
-      class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
-      alt="${description}"
-    />
-  </a>
-</li>
-`;
-  }).join('');
-
-  return galleryMarkUp;
-}
-
-// Реализация делегирования на галерее ul.js-gallery и получение url большого изображения.
-refs.jsGalleryList.addEventListener('click', onModalImage)
-function onModalImage(event) {
-  const eventTarget = event.target
-  if (eventTarget.nodeName !== 'IMG') {
-    return;
-  }
-  refs.modalOpenBox.classList.add('is-open');
-  refs.ModalImage.src = eventTarget.dataset.source;
-  console.log(eventTarget.dataset.source); 
-}
-
-refs.onModalCloseBtn.addEventListener('click', closeModalBtn)
-
-function closeModalBtn(event) {
-  refs.modalOpenBox.classList.remove('is-open');
-  refs.ModalImage.src ="";
-}
-
 
 
 
