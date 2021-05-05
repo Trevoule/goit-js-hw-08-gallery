@@ -127,38 +127,6 @@ window.addEventListener('keydown', (event) => {
           refs.ModalImage.src ="";
     };
     
-    if (event.key === 'ArrowLeft') {
-        arrowLeft()
-    };
-
-    if (event.key === 'ArrowRight') {
-        arrowRight()
-    }
     console.log(event.key);
 })
 
-
-function setNewSrc(step, index) {
-    ModalImage.dataset.index = `${index}+step`
-    ModalImage.src = imagesRef[index+step].original
-}
-
-function arrowLeft() {
-    let index = +ModalImage.dataset.index
-    if (index === 0) {
-        setNewSrc(0, imagesRef.length - 1)
-        return
-    }
-    console.log(index);
-    setNewSrc(-1, index)
-}
-
-function arrowRight() {
-    let index = +ModalImage.dataset.index
-    if (index === imagesRef.length - 1) {
-        setNewSrc(0, 0)
-        return
-    }
-    console.log(index);
-    setNewSrc(1, index);
-}
