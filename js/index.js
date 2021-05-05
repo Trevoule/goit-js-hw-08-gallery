@@ -1,4 +1,6 @@
-// import imagesRef from "./gallery-items";
+// import { imagesRef } from './gallery-items';
+
+// console.log(imagesRef);
 
 const imagesRef= [
   {
