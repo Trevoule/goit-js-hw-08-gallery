@@ -1,4 +1,4 @@
-// import { imagesRef } from './gallery-items';
+// import imagesRef from './gallery-items.js';
 
 // console.log(imagesRef);
 
@@ -72,7 +72,7 @@ const refs = {
   jsGalleryList: document.querySelector('.js-gallery'),
   modalOpenBox: document.querySelector('div.lightbox'),
   ModalImage: document.querySelector('img.lightbox__image'),
-    onModalCloseBtn: document.querySelector('.lightbox__button'),
+  onModalCloseBtn: document.querySelector('.lightbox__button'),
 };
 
 const galleryItemsMarkUp = createGalleryCard(imagesRef);
@@ -104,12 +104,14 @@ function createGalleryCard(imagesRef) {
 // Реализация делегирования на галерее ul.js-gallery и получение url большого изображения.
 refs.jsGalleryList.addEventListener('click', onModalImage)
 function onModalImage(event) {
+  event.preventDefault();
   const eventTarget = event.target
   if (eventTarget.nodeName !== 'IMG') {
     return;
   }
   refs.modalOpenBox.classList.add('is-open');
   refs.ModalImage.src = eventTarget.dataset.source;
+  refs.ModalImage.dataset.index = eventTarget.dataset.index;
   console.log(eventTarget.dataset.source); 
 }
 
@@ -127,6 +129,41 @@ window.addEventListener('keydown', (event) => {
           refs.ModalImage.src ="";
     };
     
+    if (event.key === 'ArrowLeft') {
+        arrowLeft()
+    };
+
+    if (event.key === 'ArrowRight') {
+        arrowRight()
+    }
     console.log(event.key);
 })
 
+function setNewSrc(step, index) {
+  refs.ModalImage.dataset.index = `${index + step}`
+  refs.ModalImage.src = imagesRef[index + step].original
+}
+
+function arrowLeft() {
+  let index = +refs.ModalImage.dataset.index
+  console.log(index);
+  
+  if (index === 0) {
+    setNewSrc(0, imagesRef.length - 1)
+    return
+  }
+
+  console.log(index);
+  setNewSrc(-1, index);
+}
+
+
+function arrowRight() {
+  let index = +refs.ModalImage.dataset.index
+  if (index === imagesRef.length - 1) {
+    setNewSrc(0, 0)
+    return
+  }
+  console.log(index)
+    setNewSrc(1,index);
+}
