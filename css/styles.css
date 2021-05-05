@@ -128,7 +128,6 @@ body {
   cursor: pointer;
   transition: background-color var(--animation-duration) var(--timing-function);
   outline: none;
-  background-image: url(./images/icon-close.svg);
   background-position: center;
   background-size: 60%;
   background-repeat: no-repeat;
@@ -136,6 +135,5 @@ body {
 
 .lightbox__button:hover,
 .lightbox__button:focus {
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.5);
 }
